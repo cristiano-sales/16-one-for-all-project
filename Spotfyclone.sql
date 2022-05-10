@@ -37,11 +37,12 @@ CREATE TABLE IF NOT EXISTS SpotifyClone.artist (
 -- Table SpotifyClone.follower
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS SpotifyClone.follower (
-	id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     artist_id INT NOT NULL,
+    artist_name VARCHAR(50) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES `user`(id),
-    FOREIGN KEY (artist_id) REFERENCES artist(id)
+    FOREIGN KEY (artist_id) REFERENCES artist(id),
+    CONSTRAINT pk_user_follow_artist PRIMARY KEY(user_id, artist_id)
 );
 
 -- -----------------------------------------------------
@@ -72,12 +73,12 @@ CREATE TABLE IF NOT EXISTS SpotifyClone.song (
 -- Table SpotifyClone.playback_history
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS SpotifyClone.playback_history (
-	id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     song_id INT NOT NULL,
     `when` DATETIME NOT NULL,
     FOREIGN KEY (user_id) REFERENCES `user`(id),
-    FOREIGN KEY (song_id) REFERENCES song(id)
+    FOREIGN KEY (song_id) REFERENCES song(id),
+    CONSTRAINT pk_user_song PRIMARY KEY(user_id, song_id)
 );
 
 -- -----------------------------------------------------
@@ -177,28 +178,28 @@ INSERT INTO song (`name`, `duration_seconds`, `album`, `album_id`) VALUES ('You 
 -- -----------------------------------------------------
 -- inserting data into the table SpotfyClone.follower
 -- -----------------------------------------------------
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (1, 1);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (1, 3);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (1, 4);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (2, 1);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (2, 3);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (3, 1);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (3, 2);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (4, 4);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (5, 5);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (5, 6);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (6, 1);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (6, 3);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (6, 6);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (7, 2);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (7, 5);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (8, 1);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (8, 5);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (9, 3);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (9, 4);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (9, 6);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (10, 2);
-INSERT INTO follower (`user_id`, `artist_id`) VALUES (10, 6);
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (1, 1, "Walter Phoenix");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (1, 3, "Lance Day");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (1, 4, "Freedie Shannon");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (2, 1, "Walter Phoenix");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (2, 3, "Lance Day");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (3, 1, "Walter Phoenix");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (3, 2, "Peter Strong");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (4, 4, "Freedie Shannon");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (5, 5, "Tyler Isle");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (5, 6, "Fog");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (6, 1, "Walter Phoenix");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (6, 3, "Lance Day");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (6, 6, "Fog");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (7, 2, "Peter Strong");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (7, 5, "Tyler Isle");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (8, 1, "Walter Phoenix");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (8, 5, "Tyler Isle");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (9, 3, "Lance Day");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (9, 4, "Freedie Shannon");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (9, 6, "Fog");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (10, 2, "Peter Strong");
+INSERT INTO follower (`user_id`, `artist_id`, `artist_name`) VALUES (10, 6, "Fog");
 
 -- -----------------------------------------------------
 -- inserting data into the table SpotifyClone.playback_history
